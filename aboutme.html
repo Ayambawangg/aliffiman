@@ -4,178 +4,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>My Education</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* General Styling */
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(45deg, #ff416c, #ff4b2b, #1fddff, #1fa2ff);
+            background-size: 400% 400%;
+            animation: bgAnimation 10s infinite alternate;
             color: #333;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .about {
-            padding: 20px;
-        }
-
-        .about table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        .about table th, .about table td {
-            padding: 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-
-        .about table th {
-            background-color: #333;
-            color: white;
-        }
-
-        .song {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .song h2 {
-            margin-bottom: 10px;
-        }
-
-        .image-gallery {
             display: flex;
-            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes bgAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        h1, p {
+            margin: 0;
+        }
+
+        /* Education Section Styling */
+        .education {
+            padding: 40px;
+            text-align: center;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .education h1 {
+            font-size: 2.8em;
+            color: #ff416c;
+            font-weight: 700;
+            text-shadow: 0 4px 6px rgba(255, 65, 108, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .education p {
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .education ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .education ul li {
+            font-size: 1.2em;
+            margin: 15px 0;
+            color: #333;
+            font-weight: 500;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .education ul li::before {
+            content: "🎓";
+            position: absolute;
+            left: 0;
+            font-size: 1.5em;
+        }
+
+        .textbox {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: #fff;
+            padding: 15px;
+            margin: 30px 0;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(255, 65, 108, 0.4);
+            font-style: italic;
+        }
+
+        /* Gallery Styling */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
             justify-content: center;
         }
 
-        .image-item img {
-            max-width: 100%;
-            height: auto;
+        .gallery img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
-            border: 1px solid #ddd;
-            border-radius: 5px;
         }
 
-        .popup {
+        .gallery img:hover {
+            transform: scale(1.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Modal Styling */
+        .modal {
             display: none;
             position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             z-index: 1000;
-            padding: 20px;
-            text-align: center;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
         }
 
-        .popup img {
-            max-width: 100%;
-            height: auto;
+        .modal img {
+            max-width: 70%;
+            max-height: 70%;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.5);
+            animation: zoomIn 0.4s ease-in-out;
         }
 
-        .close-btn {
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .modal-close {
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 20px;
+            top: 20px;
+            right: 30px;
+            font-size: 2em;
+            color: white;
             cursor: pointer;
         }
     </style>
 </head>
 
 <body>
-    <header>
-        <h1>About Me</h1>
-    </header>
-    <section class="about">
-        <h2>Personal Details</h2>
-        <table>
-            <tr>
-                <th>Attribute</th>
-                <th>Details</th>
-            </tr>
-            <tr>
-                <td>Full Name</td>
-                <td>Aliff Iman bin Jeffry</td>
-            </tr>
-            <tr>
-                <td>Date of Birth</td>
-                <td>August 24, 2003</td>
-            </tr>
-            <tr>
-                <td>Place of Birth</td>
-                <td>Hospital Kuala Lumpur</td>
-            </tr>
-            <tr>
-                <td>Hobbies</td>
-                <td>Football and Boxing</td>
-            </tr>
-            <tr>
-                <td>Favorite Food</td>
-                <td>Nasi Kandar</td>
-            </tr>
-            <tr>
-                <td>Life Goal</td>
-                <td>to become WBC Champion</td>
-            </tr>
-        </table>
-    </section>
-
-    <section class="image-gallery">
-        <div class="image-item">
-            <img src="imageiman19.JPEG" alt="Football Training" onclick="openPopup(this)">
+    <section class="education">
+        <h1>My Education</h1>
+        <p>
+            Education is the key to unlocking potential and building a brighter future. Here's my journey so far:
+        </p>
+        <ul>
+            <li>High School: SMK Petaling</li>
+            <li>College: UITM Segamat</li>
+        </ul>
+        <div class="textbox">
+            "A glimpse of my memorable academic moments."
         </div>
-        <div class="image-item">
-            <img src="imageiman20.JPEG" alt="Team Celebration" onclick="openPopup(this)">
-        </div>
-        <div class="image-item">
-            <img src="imageiman21.JPEG" alt="Freestyling Moves" onclick="openPopup(this)">
+        <div class="gallery">
+            <img src="imageiman12.jpeg" alt="High School Graduation" onclick="openModal(this)">
+            <img src="imageiman8.jpeg" alt="College Campus" onclick="openModal(this)">
+            <img src="imageiman9.jpeg" alt="Certification Ceremony" onclick="openModal(this)">
+            <img src="imageiman10.jpeg" alt="Team Project Presentation" onclick="openModal(this)">
+            <img src="imageiman11.jpeg" alt="IT Lab Experience" onclick="openModal(this)">
+            <img src="imageiman26.jpeg" alt="IT Lab Experience" onclick="openModal(this)">
+			<img src="imageiman27.jpeg" alt="High School Graduation" onclick="openModal(this)">
+            <img src="imageiman28.jpeg" alt="College Campus" onclick="openModal(this)">
+            <img src="imageiman29.jpeg" alt="Certification Ceremony" onclick="openModal(this)">
+            <img src="imageiman30.jpeg" alt="Team Project Presentation" onclick="openModal(this)">
+            <img src="imageiman31.jpeg" alt="IT Lab Experience" onclick="openModal(this)">
+            <img src="imageiman32.jpeg" alt="IT Lab Experience" onclick="openModal(this)">
         </div>
     </section>
 
-    <section class="song">
-        <h2>My Favorite Song</h2>
-        <audio controls>
-            <source src="balada.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
-    </section>
-
-    <div id="popup" class="popup">
-        <span class="close-btn" onclick="closePopup()">&times;</span>
-        <img class="popup-img" id="popup-img" alt="">
-        <p id="popup-caption" class="popup-caption"></p>
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img id="modal-image" src="" alt="Enlarged view">
     </div>
 
     <script>
-        function openPopup(image) {
-            const popup = document.getElementById("popup");
-            const popupImg = document.getElementById("popup-img");
-            const popupCaption = document.getElementById("popup-caption");
-            popup.style.display = "block";
-            popupImg.src = image.src;
-            popupCaption.textContent = image.alt;
+        function openModal(image) {
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modal-image');
+            modalImage.src = image.src;
+            modal.style.display = 'flex';
         }
 
-        function closePopup() {
-            const popup = document.getElementById("popup");
-            popup.style.display = "none";
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
         }
     </script>
 </body>
 
 </html>
-
-
 
